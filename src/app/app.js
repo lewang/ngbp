@@ -1,13 +1,17 @@
-app = angular.module( 'App', [
-  'ui.router'
-]);
+var app = angular.module('App', []);
 
-app.config( function myAppConfig ( $stateProvider) {
+app.controller("AppCtrl", function ($scope) {
+  $scope.callHome = function (message) {
+    alert(message);
+  };
 });
 
-app.run( function run () {
+app.directive("phone", function () {
+  return {
+    scope: {
+      dial: "&"
+    },
+    template: '<input type="text" ng-model="number"></input>'+
+      '<div class="button" ng-click="dial({number:number})">Call home!</div>'
+  };
 });
-
-app.controller( 'AppCtrl', function AppCtrl ( $scope ) {
-});
-
