@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="App" ng-controller="AppCtrl">
+<html ng-app="App">
   <head>
     <title ng-bind="pageTitle"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 
   </head>
   <body>
-    <input type="text" ng-model="input" />
-    <h2>input is</h2>
-    {{input}}
+    <div ng-controller="IndexCtrl">
+      <collection collection='tasks'></collection>
+    </div>
   </body>
 </html>

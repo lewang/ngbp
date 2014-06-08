@@ -1,13 +1,64 @@
-app = angular.module( 'App', [
-  'ui.router'
-]);
+app = angular.module('App', []);
 
-app.config( function myAppConfig ( $stateProvider) {
+app.directive('collection', function () {
+  return {
+    restrict: "E",
+    replace: true,
+    scope: {
+      collection: '='
+    },
+    template: "<ul><member ng-repeat='member in collection' member='member'></member></ul>"
+  };
 });
 
-app.run( function run () {
+app.directive('member', function ($compile) {
+  return {
+    restrict: "E",
+    replace: true,
+    scope: {
+      member: '='
+    },
+    template: "<li>{{member.name}}</li>",
+    link: function (scope, element, attrs) {
+      if (angular.isArray(scope.member.children)) {
+        element.append("<collection collection='member.children'></collection>");
+        $compile(element.contents())(scope);
+      }
+    }
+  };
 });
 
-app.controller( 'AppCtrl', function AppCtrl ( $scope ) {
+app.controller('IndexCtrl', function ($scope) {
+  $scope.tasks = [
+    {
+      name: 'Europe',
+      children: [
+        {
+          name: 'Italy',
+          children: [
+            {
+              name: 'Rome'
+            },
+            {
+              name: 'Milan'
+            }
+          ]
+        },
+        {
+          name: 'Spain'
+        }
+      ]
+    },
+    {
+      name: 'South America',
+      children: [
+        {
+          name: 'Brasil'
+        },
+        {
+          name: 'Peru'
+        }
+      ]
+    }
+  ];
 });
-
