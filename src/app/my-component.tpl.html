@@ -1,0 +1,22 @@
+<h2>Attribute</h2>
+<div>
+  <strong>get:</strong> {{isolatedAttributeFoo}}
+</div>
+<div>
+  <strong>set:</strong> <input ng-model="isolatedAttributeFoo">
+  <i>// This does not update the parent scope.</i>
+</div>
+<h2>Binding</h2>
+<div>
+  <strong>get:</strong> {{isolatedBindingFoo}}
+</div>
+<div>
+  <strong>set:</strong> <input ng-model="isolatedBindingFoo">
+  <i>// This does update the parent scope.</i>
+</div>
+<h2>Expression</h2>
+<div>
+  <input ng-model="isolatedFoo">
+  <button class="btn" ng-click="isolatedExpressionFoo({newFoo:isolatedFoo})">Submit</button>
+  <i>// And this calls a function on the parent scope.</i>
+</div>

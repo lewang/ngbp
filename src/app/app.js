@@ -1,4 +1,8 @@
-var app = angular.module('App', []);
+var app = angular.module('App', [
+  'templates-app',
+  'templates-common',
+  'ui.router'
+  ]);
 
 app.directive('myComponent', function () {
   return {
@@ -10,7 +14,8 @@ app.directive('myComponent', function () {
       isolatedAttributeFoo:'@attributeFoo',
       isolatedBindingFoo:'=bindingFoo',
       isolatedExpressionFoo:'&'
-    }
+    },
+    templateUrl: "my-component.tpl.html"
   };
 });
 
